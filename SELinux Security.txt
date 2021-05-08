@@ -1,0 +1,16 @@
+A] SELinux :-
+SELinux is an acronym for Security-enhanced Linux. It is a security feature of the Linux kernel. 
+It is designed to protect the server against misconfigurations and/or compromised daemons. 
+It put limits and instructs server daemons or programs what files they can access and what actions they can take by defining a security policy.
+
+B] SELinux modes-
+enforcing|permissive|disabled — Defines the top-level state of SELinux on a system.
+
+1. enforcing — The SELinux security policy is enforced.
+
+2. permissive — The SELinux system prints warnings but does not enforce policy.This is useful for debugging and troubleshooting purposes. 
+In permissive mode, more denials are logged because subjects can continue with actions that would otherwise be denied in enforcing mode. 
+For example, traversing a directory tree in permissive mode produces avc: denied messages for every directory level read. In enforcing mode, 
+SELinux would have stopped the initial traversal and kept further denial messages from occurring.
+
+3. disabled — SELinux is fully disabled. SELinux hooks are disengaged from the kernel and the pseudo-file system is unregistered.
