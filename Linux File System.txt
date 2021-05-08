@@ -1,0 +1,137 @@
+A] What is the Linux File System? 
+	
+	Linux file system is generally a built-in layer of a Linux operating system used to handle the data management of the storage. 
+It helps to arrange the file on the disk storage. It manages the file name, file size, creation date, and much more information about a file.
+
+B] Directories in Linux File Systems :-
+
+1. / – The Root Directory
+	Everything on your Linux system is located under the / directory, known as the root directory. 
+You can think of the / directory as being similar to the C:\ directory on Windows – but this isn’t strictly true, as Linux doesn’t have drive letters. 
+
+2. /bin – Essential User Binaries
+	The /bin directory contains the essential user binaries (programs) that must be present when the system is mounted in single-user mode. 
+
+3. /boot – Static Boot Files
+	The /boot directory contains the files needed to boot the system 
+
+4. /dev – Device Files
+	Linux exposes devices as files, and the /dev directory contains a number of special files that represent devices.
+
+5. /home – Home Folders
+	The /home directory contains a home folder for each user. For example, if your user name is bob, you have a home folder located at /home/bob. 
+This home folder contains the user’s data files and user-specific configuration files. Each user only has write access to their own home folder and must 
+obtain elevated permissions (become the root user) to modify other files on the system.
+
+6. /lib – Essential Shared Libraries
+	The /lib directory contains libraries needed by the essential binaries in the /bin and /sbin folder. Libraries needed by the binaries 
+in the /usr/bin folder are located in /usr/lib.
+
+7. /media – Removable Media
+	The /media directory contains subdirectories where removable media devices inserted into the computer are mounted. 
+
+8. /mnt – Temporary Mount Points
+	 The /mnt directory is where system administrators mounted temporary file systems while using them.
+
+9. /opt – Optional Packages
+	The /opt directory contains subdirectories for optional software packages. 
+
+10. /proc – Kernel & Process Files
+	The /proc directory similar to the /dev directory because it doesn’t contain standard files. It contains special files that represent system and 
+process information.
+
+11. /root – Root Home Directory
+	The /root directory is the home directory of the root user. Instead of being located at /home/root, it’s located at /root. This is distinct from /, 
+which is the system root directory.
+
+12. /usr – User Binaries & Read-Only Data
+	The /usr directory contains applications and files used by users, as opposed to applications and files used by the system.
+
+13. /var – Variable Data Files
+	The /var directory is the writable counterpart to the /usr directory, which must be read-only in normal operation.
+
+C] Basic Commands :-
+
+1. mkdir 	
+	Make a directory at a particular path
+2. rmdir 
+	Used to remove an empty directory  
+3. touch file 
+	To create file
+4. ~      
+	Indicates the home directory.
+5. echo  
+	It inserts text in the given file
+6. clear  
+	Clears information on the display screen to provide a blank slate.
+7. pwd   
+	Print your working directory
+8. ls    
+	List the contents of a particular path
+9. cd     
+	Move to a particular path or change directory
+10. cd ~   
+	Return to home directory.
+11. cd / 
+	To shift to root user 
+12. ls -l   
+	shows all the links with the link column shows number of links.
+13. cat   
+	 To display content of the given file
+14. cp -r  
+	To copy all files recursively.
+15. mv  
+	To rename the file 
+16. rm    
+	To remove file
+17. uname 
+	To check current version of Linux.
+18. head  
+	To get info about top files instead of all files.
+19. tail  
+	To get info about last files instead of all files.
+20. ping  
+	To check  working of network
+21. vi    
+	Text editor ,press i to insert then press ESC to return & wq to save and exit.
+
+D] Links in Linux :-
+
+A link in UNIX is a pointer to a file. Like pointers in any programming languages, links in UNIX are pointers pointing to a file or a directory. 
+Creating links is a kind of shortcuts to access a file. Links allow more than one file name to refer to the same file, elsewhere. 
+
+There are two types of links :
+
+1.Soft Link or Symbolic links
+2.Hard Links
+
+Hard Links -
+
+Each hard linked file is assigned the same Inode value as the original, therefore they reference the same physical file location. 
+Hard links more flexible and remain linked even if the original or linked files are moved throughout the file system, although hard links are unable 
+to cross different file systems.
+ls -l command shows all the links with the link column shows number of links.
+Links have actual file contents
+Removing any link, just reduces the link count, but doesn’t affect other links.
+Even if we change the filename of the original file then also the hard links properly work.
+We cannot create a hard link for a directory to avoid recursive loops.
+If original file is removed then the link will still show the content of the file.
+The size of any of the hard link file is same as the original file and if we change the content in any of the hard links then size of all hard link files are updated.
+The disadvantage of hard links is that it cannot be created for files on different file systems and it cannot be created for special files or directories.
+Command to create a hard link is: 
+$ ln  [original filename] [link name] 
+
+soft Links -
+A soft link is similar to the file shortcut feature which is used in Windows Operating systems. Each soft linked file contains a separate Inode value that points 
+to the original file. As similar to hard links, any changes to the data in either file is reflected in the other. Soft links can be linked across different 
+file systems, although if the original file is deleted or moved, the soft linked file will not work correctly (called hanging link).
+ls -l command shows all links with first column value l? and the link points to original file.
+Soft Link contains the path for original file and not the contents.
+Removing soft link doesn’t affect anything but removing original file, the link becomes “dangling” link which points to nonexistent file.
+A soft link can link to a directory.
+Size of a soft link is equal to the name of the file for which the soft link is created. E.g If name of file is file1 then size of it’s soft link will be 
+5 bytes which is equal to size of name of original file.
+If we change the name of the original file then all the soft links for that file become dangling i.e. they are worthless now.
+Link across file systems: If you want to link files across the file systems, you can only use symlinks/soft links.
+Command to create a Soft link is: 
+$ ln  -s [original filename] [link name] 
