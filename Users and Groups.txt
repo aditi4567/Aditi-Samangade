@@ -1,0 +1,63 @@
+A] Users in Linux :-
+	Linux is a multi-user system, which means that more than one person can interact with the same system at the same time.
+ As a system administrator, you have the responsibility to manage the system’s users and groups by creating and removing users and assign them to different groups .
+	
+1.useradd Command-
+
+	Only root or users with sudo privileges can use the useradd command to create new user accounts.
+When invoked, useradd creates a new user account according to the options specified on the command line and the default values set in the /etc/default/useradd file.
+
+-to create a new user account, invoke the useradd command followed by the name of the user.
+For example to create a new user named username you would run:
+
+		$sudo useradd username
+
+-to be able to log in as the newly created user, you need to set the user password. To do that run the passwd command followed by the username:
+
+		$sudo passwd username
+
+B] Groups in Linux :-
+	n Linux, a group is a collection of users. The main purpose of the groups is to define a set of privileges like read, write, 
+or execute permission for a given resource that can be shared among the users within the group.
+
+
+There are two types of groups that a user can belong to:
+
+Primary or login group – 
+It is the group that is assigned to the files that are created by the user. Usually, the name of the primary group is the same as the name of the user.
+ Each user must belong to exactly one primary group.
+
+Secondary or supplementary group - 
+It is used to grant certain privileges to a set of users. A user can be a member of zero or more secondary groups.
+
+C] Basic commands:
+1. whoami -
+	To display the username of the current use.
+2. su - 
+	To switch user
+3. useradd - 
+	Add a user to the system.
+4. userdel - 
+	Delete a user account and related files.
+5. groupadd - 
+	Add a group to the system.
+6. delgroup - 
+	Remove a group from the system.
+7. groupdel - 
+	To delete group
+8. usermod - 
+	It modifies a user account.
+9. usermod -aG admin - 
+	To append user to the secondary group.
+10. cat /etc/passwd - 
+	To check addition of the user 
+11. passwd -
+	To assign the password to user  
+12. id - 
+	To get data about user and its group 
+13. chage -  
+	change user password expiry information.
+14. sudo -
+	run one or more commands as another user typically with superuser permissions.
+
+
