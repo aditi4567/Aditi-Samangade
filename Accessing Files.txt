@@ -1,0 +1,49 @@
+A] Accessing files :- 
+
+	File ownership is an important component of Unix that provides a secure method for storing files. Every file in Unix has the following attributes −
+1.Owner permissions − The owner's permissions determine what actions the owner of the file can perform on the file.
+2.Group permissions − The group's permissions determine what actions a user, who is a member of the group that a file belongs to, can perform on the file.
+3.Other (world) permissions − The permissions for others indicate what action all other users can perform on the file.
+
+B] File Access Modes :-
+ The basic building blocks of Unix permissions are the read, write, and execute permissions, which have been described below −
+1.Read-
+Grants the capability to read, i.e., view the contents of the file.
+
+2.Write-
+Grants the capability to modify, or remove the content of the file.
+
+3.Execute-
+User with execute permissions can run a file as a program.
+
+C] Example :-
+
+Let's see file permissions in Linux with examples:
+
+ls - l on terminal gives  '-rw-rw-r--'
+This weird looking code is the one that tells us about the Unix permissions given to the owner, user group and the world.
+Here, the first '-' implies that we have selected a file.p> //File Permissions in Linux/Unix
+
+The characters are pretty easy to remember.
+
+r = read permission
+w = write permission
+x = execute permission
+- = no permission
+
+The first part of the code is 'rw-'. This suggests that the owner 'Home' can:
+Read the file
+Write or edit the file
+He cannot execute the file since the execute bit is set to '-'.
+
+The third part is for the world which means any user. It says 'r--'. This means the user can only:
+Read the file
+
+
+D] Changing file/directory permissions with 'chmod' command
+
+We can use the 'chmod' command which stands for 'change mode'. Using the command, we can set permissions (read, write, execute) on a file/directory for the owner, 
+group and the world. 
+
+Syntax:
+chmod permissions filename
