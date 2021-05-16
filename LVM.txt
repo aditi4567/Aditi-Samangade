@@ -1,0 +1,45 @@
+A] What is LVM ??
+Logical volume manager (LVM) introduces an extra layer between the physical disks and the file system allowing file systems to be :
+– resized and moved easily and online without requiring a system-wide outage.
+– Using discontinuous space on disk
+– meaningful names to volumes, rather than the usual cryptic device names.
+– span multiple physical disks
+
+Linux LVM is very similar to HP-UX LVM and provides many other advanced features like snapshots, cluster support (GFS2, OCFS and Lustre).
+
+Concepts
+LVM comprises of few conceptual layers such as physical volume, logical volume and file systems.
+
+1. Physical Volume (PV)
+Each Physical Volume can be a disk partition, whole disk, meta-device, or a loopback file. Use the command pvcreate to initialize storge for use by LVM.	
+Initializing a block device as physical volume places a label at the start of the device. 
+-The pvcreate command is used to initialize the PV for use by LVM. Before creating the PV, make sure the disk is visible in the OS. 
+-To scan the block devices to be used as PVs, use the lvmdiskscan command.
+-Use the commands pvdisplay, pvs and pvscan to display the PVs we just created.
+
+2. Volume Group (VG)
+A Volume Group gathers together a collection of Logical Volumes and Physical Volumes into one administrative unit. 
+Volume group is divided into fixed size physical extents. The command vgcreate creates a new volume group using the block special device Physical Volume 
+path previously configured for LVM with pvcreate.
+– VGs are made up of PVs, which in turn are made up of physical extents (PEs). The size of PE can differe in different VGs and is defined at the time of creating VG.
+– The default size of PE is 4MB, but you can change it to the value you want at the time of VG creation.
+– Generally, larger the PE size, better the performance.
+-Use the vgcreate command to create the new Volume Group vg01 using the 3 PVs we just created.
+-We can specify the extents with -s option and maximum number of PVs and LVs in the VG by using the options -p and -l respectively.
+-All these option are optional and need not be necessarily used.
+-The commands vgs and vgdisplay can be used to display the information about the VG we just created.
+The optional options that are used with vgcreate command are:-
+-s	Physical extent size
+-p	Max number of PVs
+-l	Max number of LVs
+–alloc	allocation policy (either contiguous, anywhere, or cling)
+
+3. Logical Volume (LV)
+A Logical Volume is the conceptual equivalent of a disk partition in a non-LVM system. Logical volumes are block devices which are created from the physical 
+extents present in the same volume group. You can use command lvcreate to create a logical volume in an existing volume group.
+
+The Logical volume can now be created in the VG using the lvcreate command.
+– If you do not specify the LV name in the command, by default the LV is given the name lvol#.
+– Normally if you do not specify which PV to span the LV, Logical volume will be created on the PV on a next-free basis.
+– To create a logical volume lvol01 of size 5 GB 
+-The commands lvdisplay, lvs and lvscan can be used to display the information about the LV we just created.
