@@ -1,0 +1,51 @@
+Introduction
+
+Creating disk partitions enables you to split your hard drive into multiple sections that act independently.
+In Linux, users must structure storage devices (USB and hard drives) before using them. 
+Partitioning is also useful when you are installing multiple operating systems on a single machine.
+
+Option 1: Partition a Disk Using parted Command
+	Follow the steps below to partition a disk in Linux by using the parted command.
+
+Step 1: List Partitions
+	Before making a partition, list available storage devices and partitions. This action helps identify the storage device you want to partition.
+Run the following command with sudo to list storage devices and partitions: sudo parted -l
+
+The terminal prints out available storage devices with information about:
+
+1.Model – Model of the storage device.
+2.Disk – Name and size of the disk.
+3.Sector size – Logical and physical size of the memory. Not to be confused with available disk space.
+4.Partition Table – Partition table type (msdos, gpt, aix, amiga, bsd, dvh, mac, pc98, sun, and loop).
+5.Disk Flags – Partitions with information on size, type, file system, and flags.
+
+Partitions types can be:
+
+1.Primary – Holds the operating system files. Only four primary partitions can be created.
+2.Extended – Special type of partition in which more than the four primary partitions can be created.
+3.Logical – Partition that has been created inside of an extended partition.
+
+Step 2: Open Storage Disk
+	Open the storage disk that you intend to partition by running the following command:sudo parted /dev/sdb
+Always specify the storage device. If you don’t specify a disk name, the disk is randomly selected. To change the disk to dev/sdb run:select /dev/sdb
+
+Step 3: Make a Partition Table
+	Create a partition table before partitioning the disk. 
+A partition table is located at the start of a hard drive and it stores data about the size and location of each partition.
+Partition table types are: aix, amiga, bsd, dvh, gpt, mac, ms-dos, pc98, sun, and loop.
+The create a partition table, enter the following:
+mklabel [partition_table_type]
+For example, to create a gpt partition table, run the following command:
+mklabel gpt
+Type Yes to execute.
+
+Step 4: Check Table
+Run the print command to review the partition table. The output displays information about the storage device
+
+Step 5: Create Partition
+Let’s make a new 1854MB-partition using the ext4 file system. The assigned disk start shall be 1MB and the disk end is at 1855MB.
+To create a new partition, enter the following:
+mkpart primary ext4 1MB 1855MB
+After that, run the print command to review information on the newly created partition. The information is displayed under the Disk Flags section:
+
+To save your actions and quit, enter the quit command. Changes are saved automatically with this command.
